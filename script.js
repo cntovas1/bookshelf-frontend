@@ -12,7 +12,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
   }
 
   try {
-    const response = await fetch('https://flask-backend-2pfq.onrender.com/upload', {
+    const response = await fetch('https://node-upload-server.onrender.com/upload', {
       method: 'POST',
       body: formData,
     });
