@@ -129,7 +129,11 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none";
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/node_size_statistics")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/node_size_statistics", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -166,7 +170,11 @@ function onFeatureSelect() {
         outputDiv.innerHTML = "Error fetching node size statistics. Check server logs for details.";
       });
   } else if (selectedFeature === "largest_smallest_nets_hpwl") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/largest_smallest_nets_hpwl")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/largest_smallest_nets_hpwl", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
       .then(response => response.json())
       .then(data => {
         if (data.largest_net && data.smallest_net) {
@@ -201,6 +209,9 @@ function onFeatureSelect() {
   } else if (selectedFeature === "legalization") {
     fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/legalize_placement", {
       method: "POST",
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
     })
       .then(response => response.json())
       .then(data => {
@@ -229,7 +240,11 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/sorted_nets")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/sorted_nets", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -268,6 +283,9 @@ function onFeatureSelect() {
     } else if (selectedFeature === "detailed_placement") {
   fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/detailed_placement", {
     method: "POST",
+    headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
   })
     .then(response => response.json())
     .then(data => {
@@ -287,7 +305,11 @@ function onFeatureSelect() {
       outputDiv.innerHTML = "Error performing detailed placement.";
     }); 
   } else if (selectedFeature === "legality_check") {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/legality_check")
+  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/legality_check", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => response.json())
     .then(data => {
       const summary = data.summary;
@@ -322,6 +344,7 @@ function onFeatureSelect() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'ngrok-skip-browser-warning': 'true' 
           },
           body: JSON.stringify({
             node_id: nodeId,
@@ -390,7 +413,12 @@ function runPlacementAlgorithm() {
   document.getElementById("random-feature-output").innerHTML = ""; 
 
   if (selectedAlgorithm === "random") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_placement", { method: "POST" })
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_placement", { 
+        method: "POST",
+        headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+      })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -425,7 +453,11 @@ function calculateSpecificNetLength() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_net_length/${netId}`)
+  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_net_length/${netId}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -456,7 +488,11 @@ function getNodeCoordinates() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/get_node_coordinates/${nodeId}`)
+  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/get_node_coordinates/${nodeId}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -481,7 +517,11 @@ function getNodeCoordinates() {
 
 
 function loadRandomVisualization() {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout")
+  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -508,7 +548,11 @@ function onRandomFeatureSelect() {
   outputDiv.innerHTML = "";
 
   if (selectedFeature === "random_total_wire_length") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_wire_length")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_wire_length", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
       .then(response => response.json())
       .then(data => outputDiv.innerHTML = "Total Wire Length: " + data.total_length)
       .catch(error => console.error("Error:", error));
@@ -517,7 +561,11 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "random_node_coordinates") {
     document.getElementById("random-node-search").style.display = "block";
   } else if (selectedFeature === "random_largest_smallest_nets_hpwl") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_largest_smallest_nets_hpwl")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_largest_smallest_nets_hpwl", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
       .then(response => response.json())
       .then(data => {
         if (data.largest_net && data.smallest_net) {
@@ -543,7 +591,11 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "save_image") {
     saveRandomImage(); // Call the function to save the image
   } else if (selectedFeature === "random_legality_check") {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_legality_check")
+  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_legality_check", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => response.json())
     .then(data => {
       const summary = data.summary;
@@ -563,7 +615,11 @@ function onRandomFeatureSelect() {
 } else if (selectedFeature === "random_modify_node_placement") {
     document.getElementById("random-modify-node").style.display = "block";
   } else if (selectedFeature === "random_sorted_nets") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_sorted_nets")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_sorted_nets", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
         .then(response => response.json())
         .then(data => {
             if (Array.isArray(data)) {
@@ -616,6 +672,7 @@ function modifyRandomNodePlacement() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'ngrok-skip-browser-warning': 'true' 
     },
     body: JSON.stringify({
       node_id: nodeId,
@@ -648,7 +705,11 @@ function calculateRandomSpecificNetLength() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_net_length/${netId}`)
+  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_net_length/${netId}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => response.json())
     .then(data => {
       if (data.wire_length !== undefined) {
@@ -676,7 +737,11 @@ function calculateRandomNodeCoordinates() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_node_coordinates?node_id=${nodeId}`)
+  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_node_coordinates?node_id=${nodeId}`, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => response.json())
     .then(data => {
       if (data.x !== undefined && data.y !== undefined) {
@@ -695,7 +760,11 @@ function calculateRandomNodeCoordinates() {
 
 
 function saveRandomImage() {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout")
+  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
     .then(response => response.blob()) 
     .then(blob => {
       const url = URL.createObjectURL(blob); 
