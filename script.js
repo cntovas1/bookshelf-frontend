@@ -91,7 +91,11 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_wire_length")
+    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_wire_length", {
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      }
+    })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
