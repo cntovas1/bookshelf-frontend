@@ -24,6 +24,9 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
   try {
     const response = await fetch(`${SERVER_URL}/upload`, {
       method: 'POST',
+      headers: {
+        'ngrok-skip-browser-warning': 'true' 
+      },
       body: formData,
     });
 
