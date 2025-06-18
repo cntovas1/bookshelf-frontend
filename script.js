@@ -1,3 +1,13 @@
+const SERVER_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"  
+    : "https://161b-2a02-587-752f-4700-3d2b-40ad-cb53-3453.ngrok-free.app";
+
+const FLASK_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5001"  
+    : "https://9220-2a02-587-752f-4700-3d2b-40ad-cb53-3453.ngrok-free.app";
+
 document.getElementById('uploadForm').addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -12,7 +22,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
   }
 
   try {
-    const response = await fetch('https://991f-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/upload', {
+    const response = await fetch(`${SERVER_URL}/upload`, {
       method: 'POST',
       body: formData,
     });
@@ -91,7 +101,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_wire_length", {
+    fetch(`${FLASK_URL}/calculate_wire_length`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -129,7 +139,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none";
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/node_size_statistics", {
+    fetch(`${FLASK_URL}/node_size_statistics`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -170,7 +180,7 @@ function onFeatureSelect() {
         outputDiv.innerHTML = "Error fetching node size statistics. Check server logs for details.";
       });
   } else if (selectedFeature === "largest_smallest_nets_hpwl") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/largest_smallest_nets_hpwl", {
+    fetch(`${FLASK_URL}/largest_smallest_nets_hpwl`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -207,7 +217,7 @@ function onFeatureSelect() {
     outputDiv.innerHTML = ""; 
     document.getElementById("placement-options").style.display = "block";
   } else if (selectedFeature === "legalization") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/legalize_placement", {
+    fetch(`${FLASK_URL}/legalize_placement`, {
       method: "POST",
       headers: {
         'ngrok-skip-browser-warning': 'true' 
@@ -240,7 +250,7 @@ function onFeatureSelect() {
     netSearchDiv.style.display = "none";
     nodeSearchDiv.style.display = "none";
     placementOptionsDiv.style.display = "none"; 
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/sorted_nets", {
+    fetch(`${FLASK_URL}/sorted_nets`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -281,7 +291,7 @@ function onFeatureSelect() {
       });
   
     } else if (selectedFeature === "detailed_placement") {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/detailed_placement", {
+  fetch(`${FLASK_URL}/detailed_placement`, {
     method: "POST",
     headers: {
         'ngrok-skip-browser-warning': 'true' 
@@ -305,7 +315,7 @@ function onFeatureSelect() {
       outputDiv.innerHTML = "Error performing detailed placement.";
     }); 
   } else if (selectedFeature === "legality_check") {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/legality_check", {
+  fetch(`${FLASK_URL}/legality_check`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -340,7 +350,7 @@ function onFeatureSelect() {
           return;
         }
   
-        fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/modify_node_coordinates", {
+        fetch(`${FLASK_URL}/modify_node_coordinates`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -413,7 +423,7 @@ function runPlacementAlgorithm() {
   document.getElementById("random-feature-output").innerHTML = ""; 
 
   if (selectedAlgorithm === "random") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_placement", { 
+    fetch(`${FLASK_URL}/random_placement`, { 
         method: "POST",
         headers: {
         'ngrok-skip-browser-warning': 'true' 
@@ -453,7 +463,7 @@ function calculateSpecificNetLength() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/calculate_net_length/${netId}`, {
+  fetch(`${FLASK_URL}/calculate_net_length/${netId}`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -488,7 +498,7 @@ function getNodeCoordinates() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/get_node_coordinates/${nodeId}`, {
+  fetch(`${FLASK_URL}/get_node_coordinates/${nodeId}`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -517,7 +527,7 @@ function getNodeCoordinates() {
 
 
 function loadRandomVisualization() {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout", {
+  fetch(`${FLASK_URL}/random_visualize_layout`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -548,7 +558,7 @@ function onRandomFeatureSelect() {
   outputDiv.innerHTML = "";
 
   if (selectedFeature === "random_total_wire_length") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_wire_length", {
+    fetch(`${FLASK_URL}/random_calculate_wire_length`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -561,7 +571,7 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "random_node_coordinates") {
     document.getElementById("random-node-search").style.display = "block";
   } else if (selectedFeature === "random_largest_smallest_nets_hpwl") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_largest_smallest_nets_hpwl", {
+    fetch(`${FLASK_URL}/random_largest_smallest_nets_hpwl`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -591,7 +601,7 @@ function onRandomFeatureSelect() {
   } else if (selectedFeature === "save_image") {
     saveRandomImage(); // Call the function to save the image
   } else if (selectedFeature === "random_legality_check") {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_legality_check", {
+  fetch(`${FLASK_URL}/random_legality_check`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -615,7 +625,7 @@ function onRandomFeatureSelect() {
 } else if (selectedFeature === "random_modify_node_placement") {
     document.getElementById("random-modify-node").style.display = "block";
   } else if (selectedFeature === "random_sorted_nets") {
-    fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_sorted_nets", {
+    fetch(`${FLASK_URL}/random_sorted_nets`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -668,7 +678,7 @@ function modifyRandomNodePlacement() {
     return;
   }
 
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_modify_node_coordinates", {
+  fetch(`${FLASK_URL}/random_modify_node_coordinates`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -705,7 +715,7 @@ function calculateRandomSpecificNetLength() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_calculate_net_length/${netId}`, {
+  fetch(`${FLASK_URL}/random_calculate_net_length/${netId}`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -737,7 +747,7 @@ function calculateRandomNodeCoordinates() {
     return;
   }
 
-  fetch(`https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_node_coordinates?node_id=${nodeId}`, {
+  fetch(`${FLASK_URL}/random_node_coordinates?node_id=${nodeId}`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
@@ -760,7 +770,7 @@ function calculateRandomNodeCoordinates() {
 
 
 function saveRandomImage() {
-  fetch("https://8fb0-2a02-587-752d-d700-b177-8494-eef4-4915.ngrok-free.app/random_visualize_layout", {
+  fetch(`${FLASK_URL}/random_visualize_layout`, {
       headers: {
         'ngrok-skip-browser-warning': 'true' 
       }
