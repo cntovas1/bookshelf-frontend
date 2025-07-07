@@ -1,12 +1,12 @@
 const SERVER_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"  
-    : "https://161b-2a02-587-752f-4700-3d2b-40ad-cb53-3453.ngrok-free.app";
+    : "https://0630-2a02-587-7522-2700-d06a-1c12-2dc9-4b80.ngrok-free.app";
 
 const FLASK_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5001"  
-    : "https://9220-2a02-587-752f-4700-3d2b-40ad-cb53-3453.ngrok-free.app";
+    : "https://35e3-2a02-587-7522-2700-d06a-1c12-2dc9-4b80.ngrok-free.app";
 
 document.getElementById('uploadForm').addEventListener('submit', async (event) => {
   event.preventDefault();
